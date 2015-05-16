@@ -388,13 +388,13 @@ Follow these steps to retrieve Exchange contacts.
   ```C#
         public async Task<ActionResult> Contacts(string code)
         {
-            AuthenticationContext authContext = new AuthenticationContext(
-               ConfigurationManager.AppSettings["ida:AuthorizationUri"] + "/common",
+           AuthenticationContext authContext = new AuthenticationContext(
+               ConfigurationManager.AppSettings["ida:AADInstance"] + "common",
                true);
 
             ClientCredential creds = new ClientCredential(
                 ConfigurationManager.AppSettings["ida:ClientID"],
-                ConfigurationManager.AppSettings["ida:Password"]);
+                ConfigurationManager.AppSettings["ida:ClientSecret"]);
 
             //Get the discovery information that was saved earlier
             CapabilityDiscoveryResult cdr = Helpers.GetFromCache("ContactsDiscoveryResult") as CapabilityDiscoveryResult;
@@ -511,12 +511,12 @@ Follow these steps to retrieve OneDrive for Business files.
         public async Task<ActionResult> Files(string code)
         {
             AuthenticationContext authContext = new AuthenticationContext(
-               ConfigurationManager.AppSettings["ida:AuthorizationUri"] + "/common",
+               ConfigurationManager.AppSettings["ida:AADInstance"] + "common",
                true);
 
             ClientCredential creds = new ClientCredential(
                 ConfigurationManager.AppSettings["ida:ClientID"],
-                ConfigurationManager.AppSettings["ida:Password"]);
+                ConfigurationManager.AppSettings["ida:ClientSecret"]);
 
             //Get the discovery information that was saved earlier
             CapabilityDiscoveryResult cdr = Helpers.GetFromCache("FilesDiscoveryResult") as CapabilityDiscoveryResult;
@@ -646,12 +646,12 @@ Follow these steps to create a new Project using the contacts and files you retr
                 }
 
                 AuthenticationContext authContext = new AuthenticationContext(
-                   ConfigurationManager.AppSettings["ida:AuthorizationUri"] + "/common",
-                   true);
+               ConfigurationManager.AppSettings["ida:AADInstance"] + "common",
+               true);
 
-                ClientCredential creds = new ClientCredential(
-                    ConfigurationManager.AppSettings["ida:ClientID"],
-                    ConfigurationManager.AppSettings["ida:Password"]);
+            ClientCredential creds = new ClientCredential(
+                ConfigurationManager.AppSettings["ida:ClientID"],
+                ConfigurationManager.AppSettings["ida:ClientSecret"]);
 
                 //Get an authorization code, if necessary
                 if (code == null)
