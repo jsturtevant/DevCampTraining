@@ -633,8 +633,8 @@ Follow these steps to create a new Project using the contacts and files you retr
             if (submitModel.Project == null && code == null)
             {
                 ViewModel formModel = new ViewModel();
-                formModel.Contacts = Helpers.GetFromCache("ContactList") as List<MyContact>;
-                formModel.Files = Helpers.GetFromCache("FileList") as List<MyFile>;
+                formModel.Contacts = Helpers.GetFromCache("ContactList") as List<MyContact> ?? new List<MyContact>();
+                formModel.Files = Helpers.GetFromCache("FileList") as List<MyFile> ?? new List<MyFile>();
                 return View(formModel);
             }
             // A new project was submitted
