@@ -249,12 +249,12 @@ Follow these steps to use the Discovery Service to locate endpoints for Exchnage
         public async Task<ActionResult> Index(string code)
         {
             AuthenticationContext authContext = new AuthenticationContext(
-               ConfigurationManager.AppSettings["ida:AuthorizationUri"] + "/common",
+               ConfigurationManager.AppSettings["ida:AADInstance"] + "common",
                true);
 
             ClientCredential creds = new ClientCredential(
                 ConfigurationManager.AppSettings["ida:ClientID"],
-                ConfigurationManager.AppSettings["ida:Password"]);
+                ConfigurationManager.AppSettings["ida:ClientSecret"]);
 
             DiscoveryClient disco = Helpers.GetFromCache("DiscoveryClient") as DiscoveryClient;
 
